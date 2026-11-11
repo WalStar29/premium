@@ -25,8 +25,7 @@
         }
 
         body {
-            /* Fondo elegante con gradiente nocturno de lujo */
-            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #221e28 100%);
+            background: #fcf8f2;
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
             justify-content: center;
@@ -34,14 +33,12 @@
             position: relative;
         }
 
-        /* --- KEYFRAMES PARA EL BORDE ANIMADO ROSA Y AZUL --- */
-        @keyframes borderAnimatedGradient {
+        @keyframes borderSoftGlow {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* --- NUBES DE FONDOS AZUL Y ROSA EXCLUSIVAS --- */
         .clouds-background {
             position: fixed;
             top: 0;
@@ -51,8 +48,13 @@
             pointer-events: none;
             z-index: 1;
             overflow: hidden;
-            filter: blur(45px);
-            opacity: 0.55;
+            filter: blur(65px);
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .clouds-background.show-clouds {
+            opacity: 0.45;
         }
 
         .cloud-blob {
@@ -62,36 +64,36 @@
         }
 
         .cloud-pink {
-            background: radial-gradient(circle, rgba(255,105,180,0.8) 0%, rgba(255,182,193,0) 70%);
-            width: 320px;
-            height: 320px;
-            top: -50px;
-            left: -50px;
+            background: radial-gradient(circle, rgba(245, 205, 210, 0.7) 0%, rgba(255,255,255,0) 70%);
+            width: 380px;
+            height: 380px;
+            top: -60px;
+            left: -60px;
         }
 
         .cloud-blue {
-            background: radial-gradient(circle, rgba(72,202,228,0.8) 0%, rgba(144,224,239,0) 70%);
-            width: 350px;
-            height: 350px;
-            bottom: -60px;
-            right: -50px;
+            background: radial-gradient(circle, rgba(190, 225, 235, 0.7) 0%, rgba(255,255,255,0) 70%);
+            width: 400px;
+            height: 400px;
+            bottom: -70px;
+            right: -60px;
             animation-delay: -6s;
         }
 
         @keyframes floatCloud {
             0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(40px) scale(1.15); }
+            100% { transform: translateY(30px) scale(1.1); }
         }
 
-        /* --- MODAL BIENVENIDA CON BORDE ANIMADO ROSA Y AZUL --- */
+        /* --- MODAL BIENVENIDA --- */
         .vip-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100dvh;
-            background: rgba(13, 27, 42, 0.88);
-            backdrop-filter: blur(16px);
+            background: rgba(252, 248, 242, 0.94);
+            backdrop-filter: blur(12px);
             z-index: 200;
             display: flex;
             justify-content: center;
@@ -102,25 +104,24 @@
 
         .vip-modal-box {
             position: relative;
-            background: rgba(18, 30, 49, 0.95);
+            background: #ffffff;
             border-radius: 24px;
-            padding: 30px 20px;
+            padding: 28px 22px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
-            max-width: 330px;
+            box-shadow: 0 20px 45px rgba(139, 115, 85, 0.12);
+            max-width: 340px;
             width: 100%;
             animation: modalPop 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* Borde dinámico para la Modal */
         .vip-modal-box::before {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border-radius: 26px;
-            background: linear-gradient(90deg, #ff69b4, #48cae4, #ff8da1, #00b4d8, #ff69b4);
-            background-size: 300% 300%;
-            animation: borderAnimatedGradient 4s ease infinite;
+            top: -1.5px; left: -1.5px; right: -1.5px; bottom: -1.5px;
+            border-radius: 25px;
+            background: linear-gradient(90deg, #e6d5c3, #b8cbd0, #e6d5c3);
+            background-size: 200% 200%;
+            animation: borderSoftGlow 6s ease infinite;
             z-index: -1;
         }
 
@@ -133,45 +134,44 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #48cae4 0%, #ff69b4 100%);
+            background: linear-gradient(135deg, #d8c2af 0%, #b5cacf 100%);
             color: #ffffff;
-            width: 46px;
-            height: 46px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
-            font-size: 1.2rem;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(139, 115, 85, 0.2);
+            font-size: 1.1rem;
         }
 
         .vip-modal-title {
-            font-size: 1.3rem;
-            color: #ffffff;
+            font-size: 1.2rem;
+            color: #3a3530;
             font-weight: 700;
             margin-bottom: 10px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         .vip-modal-text {
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            line-height: 1.5;
-            margin-bottom: 22px;
+            font-size: 0.82rem;
+            color: #756e65;
+            line-height: 1.55;
+            margin-bottom: 20px;
             font-weight: 300;
         }
 
-        /* BOTÓN BLANCO */
         .btn-gold-action {
-            background: #ffffff;
-            color: #0d1b2a;
+            background: #3a3530;
+            color: #ffffff;
             border: none;
-            padding: 13px 20px;
+            padding: 12px 20px;
             border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 700;
+            font-size: 0.88rem;
+            font-weight: 600;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 6px 20px rgba(58, 53, 48, 0.2);
             width: 100%;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.2s ease;
             font-family: 'Poppins', sans-serif;
         }
 
@@ -202,14 +202,14 @@
             align-items: center;
         }
 
-        /* --- SOBRE CON BORDE ANIMADO ROSA Y AZUL --- */
+        /* --- SOBRE INTERACTIVO --- */
         .envelope-container {
             position: absolute;
             width: 280px;
             height: 185px;
-            background: linear-gradient(135deg, #ffffff 0%, #fffdfa 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #fdfbf7 100%);
             border-radius: 14px;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 45px rgba(139, 115, 85, 0.15);
             cursor: pointer;
             perspective: 1000px;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s ease;
@@ -222,11 +222,11 @@
         .envelope-container::before {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border-radius: 16px;
-            background: linear-gradient(90deg, #ff69b4, #48cae4, #ff8da1, #00b4d8, #ff69b4);
-            background-size: 300% 300%;
-            animation: borderAnimatedGradient 4s ease infinite;
+            top: -1.5px; left: -1.5px; right: -1.5px; bottom: -1.5px;
+            border-radius: 15px;
+            background: linear-gradient(90deg, #e6d5c3, #b8cbd0, #e6d5c3);
+            background-size: 200% 200%;
+            animation: borderSoftGlow 6s ease infinite;
             z-index: -1;
         }
 
@@ -238,10 +238,9 @@
 
         .envelope-container.reveal-envelope:hover {
             transform: scale(1.03);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 50px rgba(139, 115, 85, 0.25);
         }
 
-        /* Solapa Superior del Sobre (Flap) */
         .envelope-container .flap {
             position: absolute;
             top: 0;
@@ -250,29 +249,27 @@
             height: 0;
             border-left: 140px solid transparent;
             border-right: 140px solid transparent;
-            border-top: 105px solid #fffdf7;
+            border-top: 105px solid #f7f2eb;
             transform-origin: top;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.2s 0.3s;
             z-index: 7;
-            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0 4px 6px rgba(139, 115, 85, 0.05));
         }
 
-        /* Bolsillo Inferior del Sobre */
         .envelope-container .pocket {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
             height: 0;
-            border-left: 140px solid #fdf8ee;
-            border-right: 140px solid #f8f1e1;
+            border-left: 140px solid #f9f5f0;
+            border-right: 140px solid #f4efe9;
             border-bottom: 100px solid #ffffff;
             border-bottom-left-radius: 14px;
             border-bottom-right-radius: 14px;
             z-index: 6;
         }
 
-        /* Sello con Corona */
         .seal-button {
             position: absolute;
             top: 70px;
@@ -280,7 +277,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #ff69b4 0%, #48cae4 100%);
+            background: linear-gradient(135deg, #d8c2af 0%, #b5cacf 100%);
             border: 2px solid #ffffff;
             border-radius: 50%;
             display: flex;
@@ -288,22 +285,14 @@
             justify-content: center;
             align-items: center;
             z-index: 8;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 6px 18px rgba(139, 115, 85, 0.15);
             transition: all 0.4s ease;
-            animation: pulseGlow 2s infinite;
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: translateX(-50%) scale(1); box-shadow: 0 0 12px rgba(255, 105, 180, 0.6); }
-            50% { transform: translateX(-50%) scale(1.08); box-shadow: 0 0 25px rgba(72, 202, 228, 0.95); }
-            100% { transform: translateX(-50%) scale(1); box-shadow: 0 0 12px rgba(255, 105, 180, 0.6); }
         }
 
         .seal-button i {
             font-size: 16px;
             color: #ffffff;
             margin-bottom: 2px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
         .seal-button span {
@@ -312,36 +301,33 @@
             color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
-        /* ESTADO: SOBRE ABIERTO */
         .envelope-container.open .flap {
             transform: rotateX(180deg);
             z-index: 2;
         }
 
-        /* El sobre se achica y desaparece */
         .envelope-container.shrink-hide {
             transform: scale(0.1) translateY(200px);
             opacity: 0;
             pointer-events: none;
         }
 
-        /* --- TARJETA DESPLEGABLE CON BORDE ANIMADO ROSA Y AZUL --- */
+        /* --- TARJETA DESPLEGABLE CON CARRUSEL --- */
         .invitation-card {
             position: absolute;
             width: 260px;
             max-height: 94dvh;
-            background: linear-gradient(180deg, rgba(27, 38, 59, 0.98) 0%, rgba(13, 27, 42, 0.98) 100%);
+            background: #ffffff;
             padding: 12px;
             border-radius: 20px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 25px 60px rgba(139, 115, 85, 0.18);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: space-between;
-            gap: 6px;
+            gap: 5px;
             z-index: 3;
             transform: translateY(15px) scale(0.85);
             opacity: 0;
@@ -352,11 +338,11 @@
         .invitation-card::before {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border-radius: 22px;
-            background: linear-gradient(90deg, #ff69b4, #48cae4, #ff8da1, #00b4d8, #ff69b4);
-            background-size: 300% 300%;
-            animation: borderAnimatedGradient 4s ease infinite;
+            top: -1.5px; left: -1.5px; right: -1.5px; bottom: -1.5px;
+            border-radius: 21px;
+            background: linear-gradient(90deg, #e6d5c3, #b8cbd0, #e6d5c3);
+            background-size: 200% 200%;
+            animation: borderSoftGlow 6s ease infinite;
             z-index: -1;
         }
 
@@ -373,29 +359,100 @@
         .vip-top-label {
             font-size: 0.65rem;
             font-weight: 700;
-            color: #ffffff;
+            color: #b0917c;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 2px;
         }
 
-        /* Imagen de la Plantilla */
+        /* --- CONTENEDOR DE LA IMAGEN Y FLECHAS --- */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .invitation-img {
             width: 100%;
             height: auto;
-            max-height: 48dvh;
+            max-height: 46dvh;
             object-fit: contain;
             border-radius: 10px;
             display: block;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: opacity 0.3s ease;
+        }
+
+        /* Botones de cambio manual (Flechas) */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(58, 53, 48, 0.75);
+            color: #ffffff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 25;
+            font-size: 0.85rem;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(58, 53, 48, 0.95);
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        .carousel-prev { left: 6px; }
+        .carousel-next { right: 6px; }
+
+        /* Señalización visual intermitente al abrir para indicar que se puede cambiar */
+        @keyframes pulseIndicator {
+            0% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(184, 203, 208, 0.7); }
+            70% { transform: translateY(-50%) scale(1.15); box-shadow: 0 0 0 10px rgba(184, 203, 208, 0); }
+            100% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(184, 203, 208, 0); }
+        }
+
+        .highlight-pulse {
+            animation: pulseIndicator 1.5s infinite;
+        }
+
+        /* Indicadores de puntos (dots) */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 2px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #d1c7bc;
+            transition: background 0.3s ease, width 0.3s ease;
+        }
+
+        .dot.active {
+            width: 18px;
+            border-radius: 4px;
+            background: #b0917c;
         }
 
         /* --- CONTEO REGRESIVO --- */
         .countdown-container {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
+            background: #fcf8f2;
             border-radius: 12px;
-            padding: 6px 4px;
+            padding: 5px 4px;
             text-align: center;
             position: relative;
         }
@@ -405,19 +462,19 @@
             position: absolute;
             top: -1px; left: -1px; right: -1px; bottom: -1px;
             border-radius: 13px;
-            background: linear-gradient(90deg, #ff69b4, #48cae4, #ff8da1, #00b4d8, #ff69b4);
-            background-size: 300% 300%;
-            animation: borderAnimatedGradient 4s ease infinite;
+            background: linear-gradient(90deg, #e6d5c3, #b8cbd0, #e6d5c3);
+            background-size: 200% 200%;
+            animation: borderSoftGlow 6s ease infinite;
             z-index: -1;
         }
 
         .countdown-title {
-            font-size: 0.6rem;
+            font-size: 0.58rem;
             font-weight: 600;
-            color: #ffffff;
+            color: #756e65;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .timer {
@@ -430,22 +487,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 42px;
+            min-width: 40px;
         }
 
         .timer-number {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            color: #ffffff;
-            background: rgba(0, 0, 0, 0.5);
+            color: #3a3530;
+            background: #ffffff;
             width: 100%;
             padding: 2px 0;
             border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(139, 115, 85, 0.08);
         }
 
         .timer-label {
-            font-size: 0.5rem;
-            color: #ffffff;
+            font-size: 0.48rem;
+            color: #8c8378;
             margin-top: 2px;
             font-weight: 600;
             text-transform: uppercase;
@@ -456,7 +514,7 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
         }
 
         .btn {
@@ -465,15 +523,15 @@
             justify-content: center;
             gap: 6px;
             width: 100%;
-            padding: 9px 12px;
+            padding: 8px 12px;
             border-radius: 22px;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 600;
             text-decoration: none;
             border: none;
             cursor: pointer;
             transition: transform 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             font-family: 'Poppins', sans-serif;
         }
 
@@ -487,21 +545,21 @@
         }
 
         .btn-close {
-            background: linear-gradient(135deg, #334155 100%, #1e293b 0%);
-            color: #ffffff;
+            background: #f0e6db;
+            color: #5c5348;
         }
 
         @media (max-height: 667px) {
             .invitation-img {
-                max-height: 42dvh;
+                max-height: 40dvh;
             }
             .btn {
-                padding: 7px 10px;
-                font-size: 0.75rem;
+                padding: 6px 10px;
+                font-size: 0.72rem;
             }
         }
 
-        /* Canvas para la Lluvia de Estrellas */
+        /* Canvas para las Estrellas Infinitas de Fondo */
         #canvas-confetti {
             position: fixed;
             top: 0;
@@ -509,14 +567,14 @@
             width: 100vw;
             height: 100dvh;
             pointer-events: none;
-            z-index: 100;
+            z-index: 2;
         }
     </style>
 </head>
 <body>
 
-    <!-- NUBES FLOTANTES DE FONDO AZUL Y ROSA -->
-    <div class="clouds-background">
+    <!-- NUBES FLOTANTES DE FONDO SUAVES -->
+    <div class="clouds-background" id="clouds-bg">
         <div class="cloud-blob cloud-pink"></div>
         <div class="cloud-blob cloud-blue"></div>
     </div>
@@ -525,8 +583,8 @@
     <div class="vip-overlay" id="vip-overlay">
         <div class="vip-modal-box">
             <span class="gold-badge"><i class="fa-solid fa-crown"></i></span>
-            <h2 class="vip-modal-title">Madrinas & Tías</h2>
-            <p class="vip-modal-text">Tu presencia es vital para este momento tan único. Toca para descubrir tu invitación especial.</p>
+            <h2 class="vip-modal-title">¡Tía! (Madrina) 🤍</h2>
+            <p class="vip-modal-text">De todas las personas en este mundo, tú tenías que estar en primera fila para este momento tan bonito. Queremos que seas parte de la gran sorpresa para saber si viene una princesa o un campeón a llenarnos la vida de alegría. ¡Contamos contigo para celebrar este gran momento!</p>
             <button class="btn-gold-action" onclick="startVipExperience()">
                 <i class="fa-solid fa-wand-magic-sparkles"></i> Abrir Invitación
             </button>
@@ -548,12 +606,25 @@
                 </div>
             </div>
 
-            <!-- TARJETA DESPLEGABLE -->
+            <!-- TARJETA DESPLEGABLE CON CARRUSEL DE 2 IMÁGENES -->
             <div class="invitation-card" id="card">
                 <div class="vip-top-label"><i class="fa-solid fa-star"></i> Invitación Especial <i class="fa-solid fa-star"></i></div>
 
-                <!-- Imagen de la invitación -->
-                <img src="carta.png" alt="Invitación Revelación de Género" class="invitation-img">
+                <!-- Contenedor Carrusel de Imágenes -->
+                <div class="carousel-wrapper">
+                    <button class="carousel-btn carousel-prev" onclick="prevImage()"><i class="fa-solid fa-chevron-left"></i></button>
+                    
+                    <!-- Imagen activa (Puedes cambiar 'carta-2.jpeg' por el nombre de tu segunda foto) -->
+                    <img id="invitationImage" src="carta.png" alt="Invitación Revelación de Género" class="invitation-img">
+                    
+                    <button class="carousel-btn carousel-next highlight-pulse" id="nextBtn" onclick="nextImage()"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+
+                <!-- Indicadores de puntos -->
+                <div class="carousel-dots">
+                    <span class="dot active" id="dot-0"></span>
+                    <span class="dot" id="dot-1"></span>
+                </div>
 
                 <!-- Conteo Regresivo -->
                 <div class="countdown-container">
@@ -597,36 +668,73 @@
     </div>
 
     <script>
-        // 1. Iniciar la Lluvia de Estrellas durante 3 segundos al pulsar "Abrir Invitación"
-        function startVipExperience() {
-            const modalOverlay = document.getElementById('vip-overlay');
-            const envelope = document.getElementById('envelope');
+        // Array con las 2 imágenes de la invitación
+        const images = ["carta.png", "carta-2.jpeg"]; 
+        let currentIndex = 0;
 
-            startStarRainTransition(3000);
-
-            modalOverlay.style.opacity = '0';
-            modalOverlay.style.visibility = 'hidden';
-
+        function updateImage() {
+            const imgElement = document.getElementById('invitationImage');
+            imgElement.style.opacity = '0.3';
             setTimeout(() => {
-                envelope.classList.add('reveal-envelope');
-            }, 600);
+                imgElement.src = images[currentIndex];
+                imgElement.style.opacity = '1';
+            }, 150);
+
+            // Actualizar puntos activos
+            document.querySelectorAll('.dot').forEach((dot, idx) => {
+                if (idx === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
         }
 
-        // 2. Sistema de Lluvia de Estrellas continuas (Rosa y Azul)
-        function startStarRainTransition(durationMs) {
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+            // Quitar la señalización llamativa al primer uso manual
+            document.getElementById('nextBtn').classList.remove('highlight-pulse');
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateImage();
+            document.getElementById('nextBtn').classList.remove('highlight-pulse');
+        }
+
+        // Estrellas infinitas sutiles
+        function startInfiniteStarRain() {
             const canvas = document.getElementById('canvas-confetti');
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
 
-            const stars = [];
-            const pinkColors = ['#ff69b4', '#ff8da1', '#ffb6c1', '#ffd1dc'];
-            const blueColors = ['#48cae4', '#00b4d8', '#90e0ef', '#caf0f8'];
-            
-            const startTime = Date.now();
-            let generating = true;
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
 
-            function drawStar(cx, cy, spikes, outerRadius, innerRadius, color, rotation) {
+            const stars = [];
+            const starColors = ['#d8c2af', '#b5cacf', '#e6d5c3', '#c4d6da'];
+            const totalStars = 35;
+
+            for (let i = 0; i < totalStars; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 5 + 3,
+                    color: starColors[Math.floor(Math.random() * starColors.length)],
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: Math.random() * 0.8 + 0.5,
+                    rotation: Math.random() * Math.PI * 2,
+                    vRot: (Math.random() - 0.5) * 0.02,
+                    alpha: Math.random(),
+                    alphaSpeed: Math.random() * 0.015 + 0.008
+                });
+            }
+
+            function drawStar(cx, cy, spikes, outerRadius, innerRadius, color, rotation, alpha) {
                 let rot = Math.PI / 2 * 3 + rotation;
                 let x = cx;
                 let y = cy;
@@ -634,6 +742,7 @@
 
                 ctx.save();
                 ctx.beginPath();
+                ctx.globalAlpha = Math.max(0.1, Math.min(0.8, alpha));
                 ctx.moveTo(cx, cy - outerRadius);
                 for (let i = 0; i < spikes; i++) {
                     x = cx + Math.cos(rot) * outerRadius;
@@ -649,53 +758,59 @@
                 ctx.lineTo(cx, cy - outerRadius);
                 ctx.closePath();
                 ctx.fillStyle = color;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = color;
                 ctx.fill();
                 ctx.restore();
             }
 
-            function update() {
+            function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const elapsedTime = Date.now() - startTime;
-
-                if (elapsedTime < durationMs && generating) {
-                    for (let i = 0; i < 4; i++) {
-                        const isPink = Math.random() > 0.5;
-                        stars.push({
-                            x: Math.random() * canvas.width,
-                            y: -20,
-                            size: Math.random() * 8 + 5,
-                            color: isPink ? pinkColors[Math.floor(Math.random() * pinkColors.length)] : blueColors[Math.floor(Math.random() * blueColors.length)],
-                            vx: (Math.random() - 0.5) * 4,
-                            vy: Math.random() * 5 + 4,
-                            rotation: Math.random() * Math.PI * 2,
-                            vRot: (Math.random() - 0.5) * 0.1
-                        });
-                    }
-                }
-
-                let aliveCount = 0;
 
                 stars.forEach(s => {
                     s.x += s.vx;
                     s.y += s.vy;
                     s.rotation += s.vRot;
 
-                    if (s.y < canvas.height + 30) {
-                        aliveCount++;
+                    s.alpha += s.alphaSpeed;
+                    if (s.alpha > 0.8 || s.alpha < 0.15) {
+                        s.alphaSpeed = -s.alphaSpeed;
                     }
 
-                    drawStar(s.x, s.y, 5, s.size, s.size / 2, s.color, s.rotation);
+                    if (s.y > canvas.height + 20) {
+                        s.y = -20;
+                        s.x = Math.random() * canvas.width;
+                    }
+                    if (s.x < -20) s.x = canvas.width + 20;
+                    if (s.x > canvas.width + 20) s.x = -20;
+
+                    drawStar(s.x, s.y, 5, s.size, s.size / 2, s.color, s.rotation, s.alpha);
                 });
 
-                if (elapsedTime < durationMs || aliveCount > 0) {
-                    requestAnimationFrame(update);
-                }
+                requestAnimationFrame(animate);
             }
 
-            update();
+            animate();
         }
 
-        // 3. Conteo Regresivo
+        function startVipExperience() {
+            const modalOverlay = document.getElementById('vip-overlay');
+            const envelope = document.getElementById('envelope');
+            const cloudsBg = document.getElementById('clouds-bg');
+
+            startInfiniteStarRain();
+
+            modalOverlay.style.opacity = '0';
+            modalOverlay.style.visibility = 'hidden';
+            
+            cloudsBg.classList.add('show-clouds');
+
+            setTimeout(() => {
+                envelope.classList.add('reveal-envelope');
+            }, 600);
+        }
+
+        // Conteo Regresivo
         function updateCountdown() {
             const now = new Date();
             let targetYear = now.getFullYear();
@@ -727,7 +842,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 4. Abrir sobre al presionarlo
         function openEnvelope() {
             const envelope = document.getElementById('envelope');
             const card = document.getElementById('card');
@@ -740,7 +854,6 @@
             }, 400);
         }
 
-        // 5. Cerrar tarjeta y volver al sobre
         function closeEnvelope() {
             const envelope = document.getElementById('envelope');
             const card = document.getElementById('card');
